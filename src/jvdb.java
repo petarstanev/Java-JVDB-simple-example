@@ -24,6 +24,7 @@ public class jvdb {
 		
 		//INSERT INTO Employees (FirstName, SecondName) VALUES ('Nenko', 	'Tabakov');
 		stmt = con.createStatement();
+		stmt.execute("DELETE FROM users WHERE id=3");
 		ResultSet rs1 = stmt.executeQuery("SELECT * FROM users");
 		while (rs1.next()) {
 			String id = rs1.getString("id");
@@ -32,6 +33,7 @@ public class jvdb {
 			System.out.println(id + " " + user + " " + pass);
 			//System.out.println(pass);
 		}
+		
 		System.out.println("WHERE Like other");
 		ResultSet rs2 = stmt.executeQuery("SELECT * FROM users WHERE username LIKE 'other%'");
 		while (rs2.next()) {
