@@ -19,17 +19,29 @@ public class jvdb {
 		stmt.execute("INSERT INTO users (username, password) VALUES ('user2','121212')");
 		stmt.execute("INSERT INTO users (username, password) VALUES ('user3','654321')");
 		stmt.execute("INSERT INTO users (username, password) VALUES ('user4','111111')");
+		stmt.execute("INSERT INTO users (username, password) VALUES ('otheruser1','654321')");
+		stmt.execute("INSERT INTO users (username, password) VALUES ('otheruser2','111111')");
+		
 		//INSERT INTO Employees (FirstName, SecondName) VALUES ('Nenko', 	'Tabakov');
 		stmt = con.createStatement();
-
-		ResultSet rs = stmt.executeQuery("SELECT * FROM users");
-		while (rs.next()) {
-			String id = rs.getString("id");
-			String user = rs.getString("username");
-			String pass = rs.getString("password");
+		ResultSet rs1 = stmt.executeQuery("SELECT * FROM users");
+		while (rs1.next()) {
+			String id = rs1.getString("id");
+			String user = rs1.getString("username");
+			String pass = rs1.getString("password");
 			System.out.println(id + " " + user + " " + pass);
 			//System.out.println(pass);
 		}
+		System.out.println("WHERE Like other");
+		ResultSet rs2 = stmt.executeQuery("SELECT * FROM users WHERE username LIKE 'other%'");
+		while (rs2.next()) {
+			String id = rs2.getString("id");
+			String user = rs2.getString("username");
+			String pass = rs2.getString("password");
+			System.out.println(id + " " + user + " " + pass);
+			//System.out.println(pass);
+		}
+		
 		stmt.execute("DROP TABLE users");
 	}
 }
